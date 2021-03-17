@@ -1,0 +1,31 @@
+GET http://localhost:3000/api/users/
+
+###
+GET http://localhost:3000/api/users/1
+
+###
+GET http://localhost:3000/api/users/email/alb@mail.com
+
+###
+POST http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+    "name": "alberto",
+    "surname": "kea",
+    "email": "alberto2@mail.com",
+    "birth_date": "1996/12/10",
+    "gender":"M",
+    "user":"albertokea",
+    "password": "12345"
+}
+
+###
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "user": "albertokea",
+    "email": "alberto2@mail.com",
+    "password": "12345"
+}
