@@ -61,6 +61,17 @@ const updateProfile = ({ bio, profile_picture, header_picture, instagram, facebo
     });
 }
 
+const deleteById = (id) => {
+    return new Promise((resolve, reject) => {
+        db.query('DELETE FROM users where iduser = ?', [id], (err, result) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(result)
+        });
+    });
+}
+
 module.exports = {
-    getAll, getById, getByEmail, getByUser, create, updateProfile
+    getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById
 }
