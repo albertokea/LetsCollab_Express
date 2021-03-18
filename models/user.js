@@ -29,6 +29,16 @@ const getByEmail = (email) => {
     });
 }
 
+const getByUser = (username) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from users where users.user = ?', [username], (err, rows) => {
+            if (err) return reject(err);
+            if (rows.length === 0) return resolve(null)
+            resolve(rows[0]);
+        })
+    })
+}
+
 const create = ({ name, surname, email, birth_date, gender, user, password }) => {
     return new Promise((resolve, reject) => {
         db.query('insert into users (name, surname, email, birth_date, gender, user, password, register_date) values (?, ?, ?, ?, ?, ?, ?, ?)', [name, surname, email, birth_date, gender, user, password, new Date()],
@@ -40,5 +50,5 @@ const create = ({ name, surname, email, birth_date, gender, user, password }) =>
 }
 
 module.exports = {
-    getAll, getById, getByEmail, create
+    getAll, getById, getByEmail, getByUser, create
 }

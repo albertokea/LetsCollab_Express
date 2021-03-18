@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, getById, getByEmail, create } = require('../../models/user');
+const { getAll, getById, getByEmail, getByUser, create } = require('../../models/user');
 const bcrypt = require('bcrypt');
 const dayjs = require('dayjs');
 const jwt = require('jsonwebtoken');
@@ -37,6 +37,17 @@ router.get('/email/:email', async (req, res) => {
     }
 })
 
+//GET by user
+router.get('/user/:user', async (req, res) => {
+    try {
+        const result = await getByUser(req.params.user);
+        res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+})
+
 //Register
 router.post('/register', async (req, res) => {
     try {
@@ -49,9 +60,10 @@ router.post('/register', async (req, res) => {
     }
 })
 
+//Login
 router.post('/login', async (req, res) => {
     try {
-        const user = await getById(6);
+        const user = await getByUser(req.body.user);
         if (user) {
             const equal = bcrypt.compareSync(req.body.password, user.password);
             if (equal) {
@@ -75,9 +87,9 @@ router.post('/login', async (req, res) => {
 function createToken(user) {
     const data = {
         userId: user.id,
-        caduca: dayjs().add(15, 'minutes').unix()
+        expire: dayjs().add(15, 'minutes').unix()
     }
-    return jwt.sign(data, 'collabers salt') //Salt par
+    return jwt.sign(data, 'collabers salt')
 }
 
 module.exports = router;
