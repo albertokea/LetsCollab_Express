@@ -49,6 +49,18 @@ const create = ({ name, surname, email, birth_date, gender, user, password }) =>
     });
 }
 
+const updateProfile = ({ bio, profile_picture, header_picture, instagram, facebook, twitter, iduser }) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'update users set bio = ?, profile_picture = ?, header_picture = ?, instagram = ?, facebook = ?, twitter = ? where iduser = ?',
+            [bio, profile_picture, header_picture, instagram, facebook, twitter, iduser],
+            (err, result) => {
+                if (err) return reject(err);
+                resolve(result);
+            })
+    });
+}
+
 module.exports = {
-    getAll, getById, getByEmail, getByUser, create
+    getAll, getById, getByEmail, getByUser, create, updateProfile
 }
