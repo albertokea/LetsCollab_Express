@@ -1,8 +1,21 @@
 const router = require('express').Router();
-const { getAll, getById, getByEmail, getByUser, create } = require('../../models/user');
+const { getAll, getById, getByEmail, getByUser, create, updateProfile } = require('../../models/user');
 const bcrypt = require('bcrypt');
 const dayjs = require('dayjs');
 const jwt = require('jsonwebtoken');
+
+//Edit
+router.put('/update', async (req, res) => {
+    console.log(req.body);
+    try {
+        const result = await updateProfile(req.body);
+        res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+
+});
 
 //GET all users
 router.get('/', async (req, res) => {
@@ -83,6 +96,8 @@ router.post('/login', async (req, res) => {
     }
 
 });
+
+
 
 function createToken(user) {
     const data = {

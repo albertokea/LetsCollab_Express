@@ -33,3 +33,18 @@ Content-Type: application/json
     "email": "alberto2@mail.com",
     "password": "12345"
 }
+
+###
+
+PUT http://localhost:3000/api/users/update
+Content-Type: application/json
+
+{
+    "iduser":1,
+    "bio": "skdjaldkjaslkdjasldkjadlksajdlksajdkladjaldkasjlk",
+    "twitter": "@kea",
+    "instagram": "@kea",
+    "profile_picture": "asdasdasds",
+    "header_picture":"asdasdasdasdasd",
+    "facebook":"albertokea"   
+}
