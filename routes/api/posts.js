@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm } = require('../../models/post');
+const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, create, updateById, deleteById } = require('../../models/post');
 
 router.get('/', async (req, res) => {
     try {
@@ -60,5 +60,35 @@ router.get('/bpm/:bpm', async (req, res) => {
         res.status(422).json({ error: error.message });
     }
 });
+
+router.post('/new', async (req, res) => {
+    try {
+        const result = await create(req.body);
+        res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+})
+
+router.post('/update', async (req, res) => {
+    try {
+        const result = await updateById(req.body);
+        res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+})
+
+router.delete('/delete/:idpost', async (req, res) => {
+    try {
+        const result = await deleteById(req.params.idpost);
+        res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+})
 
 module.exports = router;

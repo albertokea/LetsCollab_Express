@@ -31,7 +31,7 @@ const getByEmail = (email) => {
 
 const getByUser = (username) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from users where users.user = ?', [username], (err, rows) => {
+        db.query('select * from users where users.user = ? OR users.email = ?', [username, username], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null)
             resolve(rows[0]);

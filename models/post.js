@@ -59,16 +59,39 @@ const getByBpm = (bpm) => {
     })
 }
 
-/* const create = ({ genre, license, audio, date, }) => {
+const create = ({ genre, license, audio, key, bpm, extra_tags, download, description }) => {
     return new Promise((resolve, reject) => {
-        db.query('insert into users (name, surname, email, birth_date, gender, user, password, register_date) values (?, ?, ?, ?, ?, ?, ?, ?)', [name, surname, email, birth_date, gender, user, password, new Date()],
+        db.query('insert into posts (genre, license, audio, key_note, bpm, extra_tags, download, like_active, description_text) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', [genre, license, audio, key, bpm, extra_tags, download, false, description],
             (err, result) => {
                 if (err) return reject(err);
                 resolve(result);
             });
     });
-} */
+}
+
+const updateById = ({ genre, license, audio, key_note, bpm, extra_tags, download, description_text, like_active, idpost }) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'update posts set genre = ?, license = ?, audio = ?, key_note = ?, bpm = ?, extra_tags = ?, download = ?, like_active = ?, description_text = ? where idpost = ?',
+            [genre, license, audio, key_note, bpm, extra_tags, download, description_text, like_active, idpost],
+            (err, result) => {
+                if (err) return reject(err);
+                resolve(result);
+            })
+    });
+}
+
+const deleteById = (id) => {
+    return new Promise((resolve, reject) => {
+        db.query('DELETE FROM posts where idpost = ?', [id], (err, result) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(result)
+        });
+    });
+}
 
 module.exports = {
-    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm
+    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, create, updateById, deleteById
 }

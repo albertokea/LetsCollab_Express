@@ -13,7 +13,7 @@ const checkToken = (req, res, next) => {
         return res.json({ error: 'Incorrect token' })
     }
     if (dayjs().unix() > data.expire) {
-        return res.json({ error: 'Token caducado' })
+        return res.json({ error: 'Expired token' })
     }
     req.userId = data.userId
     next();
