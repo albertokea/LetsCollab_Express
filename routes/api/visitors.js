@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
 
 function createToken(user) {
     const data = {
-        userId: user.id,
+        userId: user.iduser,
         expire: dayjs().add(300, 'minutes').unix()
     }
     return jwt.sign(data, 'collabers salt')

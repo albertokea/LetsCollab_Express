@@ -15,12 +15,12 @@ POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-    "name": "alberto",
-    "surname": "kea",
-    "email": "alberto2@mail.com",
+    "name": "alvaro",
+    "surname": "gonsi",
+    "email": "alberjd@mail.com",
     "birth_date": "1996/12/10",
     "gender":"M",
-    "user":"albertokea2",
+    "user":"srtorti2",
     "password": "12345"
 }
 
