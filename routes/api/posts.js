@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, create, updateById, deleteById } = require('../../models/post');
+const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUser, create, updateById, deleteById } = require('../../models/post');
 
 router.get('/', async (req, res) => {
     try {
@@ -64,6 +64,16 @@ router.get('/bpm/:bpm', async (req, res) => {
 router.get('/type/:type', async (req, res) => {
     try {
         const result = await getByType(req.params.type);
+        res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+});
+
+router.get('/user/:fk_user', async (req, res) => {
+    try {
+        const result = await getByUser(req.params.fk_user);
         res.json(result)
     }
     catch (error) {

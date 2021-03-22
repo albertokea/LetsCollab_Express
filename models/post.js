@@ -24,7 +24,7 @@ const getByGenre = (genre) => {
         db.query('select * from posts where posts.genre = ?', [genre], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
-            resolve(rows[0]);
+            resolve(rows);
         })
     })
 }
@@ -34,7 +34,7 @@ const getByLicense = (license) => {
         db.query('select * from posts where posts.license = ?', [license], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
-            resolve(rows[0]);
+            resolve(rows);
         })
     })
 }
@@ -44,7 +44,7 @@ const getByKey = (key) => {
         db.query('select * from posts where posts.key = ?', [key], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
-            resolve(rows[0]);
+            resolve(rows);
         })
     })
 }
@@ -54,7 +54,7 @@ const getByBpm = (bpm) => {
         db.query('select * from posts where posts.bpm = ?', [bpm], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
-            resolve(rows[0]);
+            resolve(rows);
         })
     })
 }
@@ -64,7 +64,17 @@ const getByType = (type) => {
         db.query('select * from posts where posts.type  = ?', [type], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
-            resolve(rows[0]);
+            resolve(rows);
+        })
+    })
+}
+
+const getByUser = (fk_user) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from posts where posts.fk_user  = ?', [fk_user], (err, rows) => {
+            if (err) return reject(err);
+            if (rows.length === 0) return resolve(null);
+            resolve(rows);
         })
     })
 }
@@ -103,5 +113,5 @@ const deleteById = (id) => {
 }
 
 module.exports = {
-    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, create, updateById, deleteById
+    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUser, create, updateById, deleteById
 }
