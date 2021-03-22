@@ -59,6 +59,16 @@ const getByBpm = (bpm) => {
     })
 }
 
+const getByType = (type) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from posts where posts.type  = ?', [type], (err, rows) => {
+            if (err) return reject(err);
+            if (rows.length === 0) return resolve(null);
+            resolve(rows[0]);
+        })
+    })
+}
+
 const create = ({ genre, license, audio, key, bpm, extra_tags, download, description }) => {
     return new Promise((resolve, reject) => {
         db.query('insert into posts (genre, license, audio, key_note, bpm, extra_tags, download, like_active, description_text) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', [genre, license, audio, key, bpm, extra_tags, download, false, description],
@@ -93,5 +103,5 @@ const deleteById = (id) => {
 }
 
 module.exports = {
-    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, create, updateById, deleteById
+    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, create, updateById, deleteById
 }
