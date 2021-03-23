@@ -1,10 +1,6 @@
 const router = require('express').Router();
-<<<<<<< HEAD
-const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, create, updateById, deleteById } = require('../../models/post');
-=======
 
-const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUser, create, updateById, deleteById } = require('../../models/post');
->>>>>>> 64f1852a508344a7d390d438ea4b1b5b135fa17a
+const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, create, updateById, deleteById } = require('../../models/post');
 
 router.get('/', async (req, res) => {
     try {
