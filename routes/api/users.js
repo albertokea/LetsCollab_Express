@@ -1,8 +1,11 @@
 const router = require('express').Router();
+const multer = require('multer');
+const upload = multer({ dest: 'pucliv/images/profile_pictures' });
 const { getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById } = require('../../models/user');
 const bcrypt = require('bcrypt');
 const dayjs = require('dayjs');
 const jwt = require('jsonwebtoken');
+const fs = require('fs')
 
 //Edit
 router.put('/update', async (req, res) => {
@@ -69,6 +72,10 @@ router.delete('/delete/:iduser', async (req, res) => {
     catch (error) {
         res.status(422).json({ error: error.message });
     }
+})
+
+router.post('/upload', upload.single('profile_picture'), async (req, res) => {
+    fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
 })
 
 module.exports = router;
