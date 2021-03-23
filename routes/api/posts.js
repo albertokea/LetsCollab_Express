@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUser, create, updateById, deleteById } = require('../../models/post');
 
 router.get('/', async (req, res) => {
@@ -110,5 +111,7 @@ router.delete('/delete/:idpost', async (req, res) => {
         res.status(422).json({ error: error.message });
     }
 })
+
+
 
 module.exports = router;

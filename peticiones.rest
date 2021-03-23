@@ -29,8 +29,8 @@ POST http://localhost:3000/api/login
 Content-Type: application/json
 
 {
-    "user": "albertokea2",
-    "email": "alberto2@mail.com",
+    "user": "srtorti2",
+    "email": "",
     "password": "12345"
 }
 
@@ -48,4 +48,14 @@ Content-Type: application/json
     "download": true,
     "description": "sodjaiosd",
     "idpost": "4"
+}
+
+###
+PUT http://localhost:3000/api/users/update
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJleHBpcmUiOjE2MTY1MTkwNzEsImlhdCI6MTYxNjUwMTA3MX0.xRL771V-i5URF_47FmNk7qH1ST3ZB_-p7WB3119qsNE
+
+{
+    "twitter":"torti",
+    "iduser":"10"
 }
