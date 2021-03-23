@@ -49,3 +49,20 @@ Content-Type: application/json
     "description": "sodjaiosd",
     "idpost": "4"
 }
+
+###
+POST http://localhost:3000/api/posts/new
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjUxNTE1NCwiaWF0IjoxNjE2NDk3MTU0fQ.yxZwv4y5HxgyOHmlL8iwUY6f8-3QfEGTo_gShY3G8u8
+
+{
+    "genre": "aaa",
+    "license": "license",
+    "audio": "ccc",
+    "key": "G",
+    "bpm": 25,
+    "extra_tags": "hhh",
+    "download": true,
+    "description": "sodjaiosd",
+    "idpost": "4"
+}
