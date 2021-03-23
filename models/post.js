@@ -69,7 +69,7 @@ const getByType = (type) => {
     })
 }
 
-const getByUser = (fk_user) => {
+const getByUserId = (fk_user) => {
     return new Promise((resolve, reject) => {
         db.query('select * from posts where posts.fk_user  = ?', [fk_user], (err, rows) => {
             if (err) return reject(err);
@@ -79,9 +79,9 @@ const getByUser = (fk_user) => {
     })
 }
 
-const create = ({ genre, license, audio, key, bpm, extra_tags, download, description }) => {
+const create = ({ genre, license, audio, key, bpm, extra_tags, download, description, type }) => {
     return new Promise((resolve, reject) => {
-        db.query('insert into posts (genre, license, audio, key_note, bpm, extra_tags, download, like_active, description_text) values (?, ?, ?, ?, ?, ?, ?, ?, ?)', [genre, license, audio, key, bpm, extra_tags, download, false, description],
+        db.query('insert into posts (genre, license, audio, key_note, bpm, extra_tags, download, like_active, description_text, type) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [genre, license, audio, key, bpm, extra_tags, download, false, description, type],
             (err, result) => {
                 if (err) return reject(err);
                 resolve(result);
@@ -113,5 +113,5 @@ const deleteById = (id) => {
 }
 
 module.exports = {
-    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUser, create, updateById, deleteById
+    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, create, updateById, deleteById
 }

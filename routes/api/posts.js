@@ -1,6 +1,10 @@
 const router = require('express').Router();
+<<<<<<< HEAD
+const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, create, updateById, deleteById } = require('../../models/post');
+=======
 
 const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUser, create, updateById, deleteById } = require('../../models/post');
+>>>>>>> 64f1852a508344a7d390d438ea4b1b5b135fa17a
 
 router.get('/', async (req, res) => {
     try {
@@ -74,7 +78,7 @@ router.get('/type/:type', async (req, res) => {
 
 router.get('/user/:fk_user', async (req, res) => {
     try {
-        const result = await getByUser(req.params.fk_user);
+        const result = await getByUserId(req.params.fk_user);
         res.json(result)
     }
     catch (error) {
