@@ -72,6 +72,8 @@ const deleteById = (id) => {
     });
 }
 
+
+
 module.exports = {
     getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById
 }
