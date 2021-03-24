@@ -2,9 +2,6 @@ const router = require('express').Router();
 const multer = require('multer');
 const upload = multer({ dest: 'public/images/profile_pictures' });
 const { getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById } = require('../../models/user');
-const bcrypt = require('bcrypt');
-const dayjs = require('dayjs');
-const jwt = require('jsonwebtoken');
 const fs = require('fs')
 
 //Edit
