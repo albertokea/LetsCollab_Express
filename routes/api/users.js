@@ -2,20 +2,18 @@ const router = require('express').Router();
 const multer = require('multer');
 const upload = multer({ dest: 'public/images/profile_pictures' });
 const { getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById } = require('../../models/user');
-const bcrypt = require('bcrypt');
-const dayjs = require('dayjs');
-const jwt = require('jsonwebtoken');
 const fs = require('fs')
 
 //Edit
 router.put('/update', upload.single('profile_picture'), async (req, res, next) => {
-    console.log(req.file.path);
+    const extension = '.' + req.file.mimetype.split('/')[1];
+    const newName = req.file.filename + extension;
+    const newPath = req.file.path + extension;
+    fs.renameSync(req.file.path, newPath);
+    req.body.profile_picture = newName;
     try {
-        /*  const idk = fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]); */
-        /* const result = await updateProfile(req.body);
-        res.json(result) */
-        /* console.log(idk); */
-
+        const result = await updateProfile(req.body);
+        res.json(result)
     }
     catch (error) {
         res.status(422).json({ error: error.message });
