@@ -4,6 +4,17 @@ const bcrypt = require('bcrypt');
 const dayjs = require('dayjs');
 const jwt = require('jsonwebtoken');
 
+//GET by user
+router.get('/:user', async (req, res) => {
+    try {
+        const result = await getByUser(req.params.user);
+        res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+});
+
 //Register
 router.post('/register', async (req, res) => {
     try {

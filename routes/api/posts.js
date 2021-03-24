@@ -2,7 +2,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const upload = multer({ dest: 'public/audio' });
 const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, create, updateById, deleteById } = require('../../models/post');
-const fs = require('fs')
+const fs = require('fs');
 
 router.get('/', async (req, res) => {
     try {
