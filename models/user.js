@@ -49,11 +49,11 @@ const create = ({ name, surname, email, birth_date, gender, user, password }) =>
     });
 }
 
-const updateProfile = ({ bio, profile_picture, header_picture, instagram, facebook, twitter, iduser }) => {
+const updateProfile = ({ bio, profile_picture, instagram, facebook, twitter, subtitle, iduser }) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'update users set bio = ?, profile_picture = ?, header_picture = ?, instagram = ?, facebook = ?, twitter = ? where iduser = ?',
-            [bio, profile_picture, header_picture, instagram, facebook, twitter, iduser],
+            'update users set bio = ?, profile_picture = ?, instagram = ?, facebook = ?, twitter = ?, subtitle = ? where iduser = ?',
+            [bio, profile_picture, instagram, facebook, twitter, subtitle, iduser],
             (err, result) => {
                 if (err) return reject(err);
                 resolve(result);
@@ -61,6 +61,17 @@ const updateProfile = ({ bio, profile_picture, header_picture, instagram, facebo
     });
 }
 
+/* const updateHeader = ({ header_picture, iduser }) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'update users set  header_picture = ?, where iduser = ?',
+            [header_picture, iduser],
+            (err, result) => {
+                if (err) return reject(err);
+                resolve(result);
+            })
+    });
+} */
 const deleteById = (id) => {
     return new Promise((resolve, reject) => {
         db.query('DELETE FROM users where iduser = ?', [id], (err, result) => {
@@ -75,5 +86,5 @@ const deleteById = (id) => {
 
 
 module.exports = {
-    getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById
+    getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById, /* updateHeader */
 }

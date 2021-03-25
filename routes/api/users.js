@@ -6,21 +6,52 @@ const fs = require('fs')
 
 //Edit
 router.put('/update', upload.single('profile_picture'), async (req, res, next) => {
+    if (req.file) {
+        const extension = '.' + req.file.mimetype.split('/')[1];
+        const newName = req.file.filename + extension;
+        const newPath = req.file.path + extension;
+        fs.renameSync(req.file.path, newPath);
+        req.body.profile_picture = newName
+
+        try {
+            const result = await updateProfile(req.body);
+            res.json(result)
+        }
+        catch (error) {
+            res.status(422).json({ error: error.message });
+        }
+    } else {
+
+        try {
+            const result = await updateProfile(req.body);
+            res.json(result)
+        }
+        catch (error) {
+            res.status(422).json({ error: error.message });
+        }
+    }
+
+
+});
+/* router.put('/updateHeader', upload.single('header_picture'), async (req, res, next) => {
+
     const extension = '.' + req.file.mimetype.split('/')[1];
     const newName = req.file.filename + extension;
     const newPath = req.file.path + extension;
     fs.renameSync(req.file.path, newPath);
-    req.body.profile_picture = newName;
+    req.body.profile_picture = newName
+
     try {
-        const result = await updateProfile(req.body);
+        const result = await updateHeader(req.body);
         res.json(result)
     }
     catch (error) {
         res.status(422).json({ error: error.message });
+
     }
 
-});
 
+}); */
 //GET all users
 router.get('/', async (req, res) => {
     try {
