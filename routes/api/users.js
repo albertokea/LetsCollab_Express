@@ -4,23 +4,6 @@ const upload = multer({ dest: 'public/images/profile_pictures' });
 const { getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById } = require('../../models/user');
 const fs = require('fs')
 
-//Edit
-router.put('/update', upload.single('profile_picture'), async (req, res, next) => {
-    const extension = '.' + req.file.mimetype.split('/')[1];
-    const newName = req.file.filename + extension;
-    const newPath = req.file.path + extension;
-    fs.renameSync(req.file.path, newPath);
-    req.body.profile_picture = newName;
-    try {
-        const result = await updateProfile(req.body);
-        res.json(result)
-    }
-    catch (error) {
-        res.status(422).json({ error: error.message });
-    }
-
-});
-
 //GET all users
 router.get('/', async (req, res) => {
     try {
@@ -65,6 +48,24 @@ router.get('/user/:user', async (req, res) => {
     }
 })
 
+//Edit
+router.put('/update', upload.single('profile_picture'), async (req, res, next) => {
+    const extension = '.' + req.file.mimetype.split('/')[1];
+    const newName = req.file.filename + extension;
+    const newPath = req.file.path + extension;
+    fs.renameSync(req.file.path, newPath);
+    req.body.profile_picture = newName;
+    try {
+        const result = await updateProfile(req.body);
+        res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+
+});
+
+//Delete
 router.delete('/delete/:iduser', async (req, res) => {
     try {
         const result = await deleteById(req.params.iduser);

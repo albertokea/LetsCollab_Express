@@ -32,7 +32,6 @@ Content-Type: application/json
 
 {
     "user": "albertokea2",
-    "email": "",
     "password": "12345"
 }
 
@@ -61,3 +60,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJleHBpcmUi
     "twitter":"alskdjslakdjsak",
     "iduser":"10"
 }
+
+###
+POST http://localhost:3000/api/postMessages/new
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjcxMTIzMiwiaWF0IjoxNjE2NjkzMjMyfQ.CUqwE1Z642QjtDZUJa9xzyqL5pvxDizKJSwx-yHL5aY
+
+{
+    "fk_post":"3",
+    "fk_user":"8",
+    "text":"dgrdf  regrdfg srdfgdf"
+}
+
+###
+GET http://localhost:3000/api/postMessages/user/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjcxMTIzMiwiaWF0IjoxNjE2NjkzMjMyfQ.CUqwE1Z642QjtDZUJa9xzyqL5pvxDizKJSwx-yHL5aY
