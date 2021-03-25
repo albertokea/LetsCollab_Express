@@ -61,17 +61,17 @@ const updateProfile = ({ bio, profile_picture, instagram, facebook, twitter, sub
     });
 }
 
-/* const updateHeader = ({ header_picture, iduser }) => {
+const updateHeader = ({ header_picture, iduser }) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'update users set  header_picture = ?, where iduser = ?',
+            'update users set header_picture = ? where iduser = ?',
             [header_picture, iduser],
             (err, result) => {
                 if (err) return reject(err);
                 resolve(result);
             })
     });
-} */
+}
 const deleteById = (id) => {
     return new Promise((resolve, reject) => {
         db.query('DELETE FROM users where iduser = ?', [id], (err, result) => {
@@ -86,5 +86,5 @@ const deleteById = (id) => {
 
 
 module.exports = {
-    getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById, /* updateHeader */
+    getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById, updateHeader
 }
