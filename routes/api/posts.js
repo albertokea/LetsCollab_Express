@@ -7,9 +7,11 @@ const fs = require('fs');
 router.get('/', async (req, res) => {
     try {
         const result = await getAll();
+        console.log(result);
         res.json(result)
     }
     catch (error) {
+        console.log(error);
         res.status(422).json({ error: error.message });
     }
 });
@@ -85,12 +87,10 @@ router.get('/user/:fk_user', async (req, res) => {
 });
 
 router.post('/new', upload.single('audio'), async (req, res) => {
-    const extension = '.' + req.file.mimetype.split('/')[1];
+    const extension = '.' + req.file.originalname.split('.')[1];
     const newName = req.file.filename + extension;
     const newPath = req.file.path + extension;
     fs.renameSync(req.file.path, newPath);
-    console.log(req.body);
-    console.log(req.file);
     req.body.audio = newName;
     try {
         const result = await create(req.body);
