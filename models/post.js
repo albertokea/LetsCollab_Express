@@ -1,6 +1,6 @@
-const getAll = () => {
+const getAll = (offset) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM posts', (err, rows) => {
+        db.query('SELECT * FROM posts order by idpost desc limit 10 offset ?', [offset], (err, rows) => {
             if (err) {
                 return reject(err);
             }
@@ -79,9 +79,19 @@ const getByUserId = (fk_user) => {
     })
 }
 
-const create = ({ genre, license, audio, key, bpm, extra_tags, download, description, type }) => {
+const getByKeyword = (keyword) => {
     return new Promise((resolve, reject) => {
-        db.query('insert into posts (genre, license, audio, key_note, bpm, extra_tags, download, like_active, description_text, type) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [genre, license, audio, key, bpm, extra_tags, download, false, description, type],
+        db.query('select * from posts where posts.genre like ? OR posts.type like ? OR posts.description_text like ? OR posts.extra_tags like ?', [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`], (err, rows) => {
+            if (err) return reject(err);
+            if (rows.length === 0) return resolve(null);
+            resolve(rows);
+        })
+    })
+}
+
+const create = ({ genre, license, audio, key, bpm, extra_tags, download, description, type, fk_user }) => {
+    return new Promise((resolve, reject) => {
+        db.query('insert into posts (genre, license, audio, key_note, bpm, extra_tags, download, like_active, description_text, type, fk_user) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [genre, license, audio, key, bpm, extra_tags, download, false, description, type, fk_user],
             (err, result) => {
                 if (err) return reject(err);
                 resolve(result);
@@ -113,5 +123,5 @@ const deleteById = (id) => {
 }
 
 module.exports = {
-    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, create, updateById, deleteById
+    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, getByKeyword, create, updateById, deleteById
 }
