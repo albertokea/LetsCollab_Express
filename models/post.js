@@ -168,7 +168,7 @@ const getCountByType = (type) => {
 
 const getCountByKeyword = (keyword) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT count(*) as count from posts where posts.genre like ? OR posts.type like ? OR posts.description_text like ? OR posts.extra_tags like ? order by idpost desc limit 10 offset ?', [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`], (err, rows) => {
+        db.query('SELECT count(*) as count from posts where posts.genre like ? OR posts.type like ? OR posts.description_text like ? OR posts.extra_tags like ? ', [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`], (err, rows) => {
             if (err) {
                 return reject(err);
             }
