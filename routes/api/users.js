@@ -5,7 +5,6 @@ const uploadHeader = multer({ dest: 'public/images/header_pictures' });
 const { getAll, getById, getByEmail, getByUser, updateProfile, deleteById, updateHeader } = require('../../models/user');
 const fs = require('fs')
 
-//a ver si esto sirve
 //Edit
 router.put('/update', uploadProfileImage.single('profile_picture'), async (req, res, next) => {
     if (req.file) {
@@ -57,6 +56,7 @@ router.put('/updateHeader', uploadHeader.single('header_picture'), async (req, r
 
 
 });
+
 //GET all users
 router.get('/', async (req, res) => {
     try {
