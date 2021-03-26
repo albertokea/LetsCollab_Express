@@ -1,8 +1,10 @@
-//USERS
-GET http://localhost:3000/api/users/
+
+GET http://localhost:3000/api/posts/offset/10
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjcwNDQwNiwiaWF0IjoxNjE2Njg2NDA2fQ.jvzb1d6jDqIY7iFAnK4HJZGfPguf-nu4hj4PzQmKRW0
 
 ###
-GET http://localhost:3000/api/users/1
+GET http://localhost:3000/api/posts/keyword/cortinas
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjcwNDQwNiwiaWF0IjoxNjE2Njg2NDA2fQ.jvzb1d6jDqIY7iFAnK4HJZGfPguf-nu4hj4PzQmKRW0
 
 ###
 GET http://localhost:3000/api/users/email/alb@mail.com
@@ -29,8 +31,7 @@ POST http://localhost:3000/api/login
 Content-Type: application/json
 
 {
-    "user": "srtorti2",
-    "email": "",
+    "user": "albertokea2",
     "password": "12345"
 }
 
@@ -59,3 +60,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJleHBpcmUi
     "twitter":"alskdjslakdjsak",
     "iduser":"10"
 }
+
+###
+POST http://localhost:3000/api/postMessages/new
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjcxMTIzMiwiaWF0IjoxNjE2NjkzMjMyfQ.CUqwE1Z642QjtDZUJa9xzyqL5pvxDizKJSwx-yHL5aY
+
+{
+    "fk_post":"3",
+    "fk_user":"8",
+    "text":"dgrdf  regrdfg srdfgdf"
+}
+
+###
+GET http://localhost:3000/api/postMessages/user/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjcxMTIzMiwiaWF0IjoxNjE2NjkzMjMyfQ.CUqwE1Z642QjtDZUJa9xzyqL5pvxDizKJSwx-yHL5aY

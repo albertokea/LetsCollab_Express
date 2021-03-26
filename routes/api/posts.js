@@ -1,15 +1,17 @@
 const router = require('express').Router();
 const multer = require('multer');
 const upload = multer({ dest: 'public/audio' });
-const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, create, updateById, deleteById } = require('../../models/post');
-const fs = require('fs')
+const { getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, getByKeyword, create, updateById, deleteById } = require('../../models/post');
+const fs = require('fs');
 
-router.get('/', async (req, res) => {
+router.get('/offset/:offset', async (req, res) => {
     try {
-        const result = await getAll();
+        const result = await getAll(parseInt(req.params.offset));
+        console.log(result);
         res.json(result)
     }
     catch (error) {
+        console.log(error);
         res.status(422).json({ error: error.message });
     }
 });
@@ -84,14 +86,23 @@ router.get('/user/:fk_user', async (req, res) => {
     }
 });
 
+router.get('/keyword/:keyword', async (req, res) => {
+    try {
+        const result = await getByKeyword(req.params.keyword);
+        res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+});
+
 router.post('/new', upload.single('audio'), async (req, res) => {
-    const extension = '.' + req.file.mimetype.split('/')[1];
+    const extension = '.' + req.file.originalname.split('.')[1];
     const newName = req.file.filename + extension;
     const newPath = req.file.path + extension;
     fs.renameSync(req.file.path, newPath);
-    console.log(req.body);
-    console.log(req.file);
     req.body.audio = newName;
+    req.body.fk_user = req.userId;
     try {
         const result = await create(req.body);
         res.json(result)
