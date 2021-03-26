@@ -19,9 +19,9 @@ const getById = (id) => {
     })
 }
 
-const getByGenre = (genre) => {
+const getByGenre = (genre, offset) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from posts where posts.genre = ?', [genre], (err, rows) => {
+        db.query('select * from posts where posts.genre = ? order by idpost desc limit 10 offset ?', [genre, offset], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
@@ -29,9 +29,9 @@ const getByGenre = (genre) => {
     })
 }
 
-const getByLicense = (license) => {
+const getByLicense = (license, offset) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from posts where posts.license = ?', [license], (err, rows) => {
+        db.query('select * from posts where posts.license = ? order by idpost desc limit 10 offset ?', [license, offset], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
@@ -39,9 +39,9 @@ const getByLicense = (license) => {
     })
 }
 
-const getByKey = (key) => {
+const getByKey = (key, offset) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from posts where posts.key = ?', [key], (err, rows) => {
+        db.query('select * from posts where posts.key_note = ? order by idpost desc limit 10 offset ?', [key, offset], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
@@ -49,9 +49,9 @@ const getByKey = (key) => {
     })
 }
 
-const getByBpm = (bpm) => {
+const getByBpm = (bpm, offset) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from posts where posts.bpm = ?', [bpm], (err, rows) => {
+        db.query('select * from posts where posts.bpm = ? order by idpost desc limit 10 offset ?', [bpm, offset], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
@@ -59,9 +59,9 @@ const getByBpm = (bpm) => {
     })
 }
 
-const getByType = (type) => {
+const getByType = (type, offset) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from posts where posts.type  = ?', [type], (err, rows) => {
+        db.query('select * from posts where posts.type  = ? order by idpost desc limit 10 offset ?', [type, offset], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
@@ -69,9 +69,9 @@ const getByType = (type) => {
     })
 }
 
-const getByUserId = (fk_user) => {
+const getByUserId = (fk_user, offset) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from posts where posts.fk_user  = ?', [fk_user], (err, rows) => {
+        db.query('select * from posts where posts.fk_user  = ? order by idpost desc limit 10 offset ?', [fk_user, offset], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
@@ -79,12 +79,100 @@ const getByUserId = (fk_user) => {
     })
 }
 
-const getByKeyword = (keyword) => {
+const getByKeyword = (keyword, offset) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from posts where posts.genre like ? OR posts.type like ? OR posts.description_text like ? OR posts.extra_tags like ?', [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`], (err, rows) => {
+        db.query('select * from posts where posts.genre like ? OR posts.type like ? OR posts.description_text like ? OR posts.extra_tags like ? order by idpost desc limit 10 offset ?', [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`, offset], (err, rows) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
+        })
+    })
+}
+
+const getCount = () => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count FROM posts', (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
+        })
+    })
+}
+
+const getCountUserPosts = (user) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count FROM posts where fk_user = ?', [user], (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
+        })
+    })
+}
+
+const getCountByGenre = (genre) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count FROM posts where genre = ?', [genre], (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
+        })
+    })
+}
+
+const getCountByLicense = (license) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count FROM posts where license = ?', [license], (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
+        })
+    })
+}
+
+const getCountByKey = (key) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count FROM posts where key_note = ?', [key], (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
+        })
+    })
+}
+
+const getCountByBpm = (bpm) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count FROM posts where bpm = ?', [bpm], (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
+        })
+    })
+}
+
+const getCountByType = (type) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count FROM posts where type = ?', [type], (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
+        })
+    })
+}
+
+const getCountByKeyword = (keyword) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count from posts where posts.genre like ? OR posts.type like ? OR posts.description_text like ? OR posts.extra_tags like ? order by idpost desc limit 10 offset ?', [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`], (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
         })
     })
 }
@@ -123,5 +211,5 @@ const deleteById = (id) => {
 }
 
 module.exports = {
-    getAll, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, getByKeyword, create, updateById, deleteById
+    getAll, getCount, getCountUserPosts, getCountByGenre, getCountByLicense, getCountByKey, getCountByBpm, getCountByType, getCountByKeyword, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, getByKeyword, create, updateById, deleteById
 }

@@ -1,6 +1,7 @@
+//GET by post
 const getByPost = (idpost) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM post_messages order by idpost desc where fk_post = ?', [idpost], (err, rows) => {
+        db.query('SELECT * FROM post_messages where fk_post = ? order by idpost_message desc', [idpost], (err, rows) => {
             if (err) {
                 return reject(err);
             }
@@ -11,7 +12,7 @@ const getByPost = (idpost) => {
 
 const getByUserId = (iduser) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM post_messages order by idpost desc where fk_user = ?', [iduser], (err, rows) => {
+        db.query('SELECT * FROM post_messages where fk_user = ? order by idpost_message desc', [iduser], (err, rows) => {
             if (err) {
                 return reject(err);
             }

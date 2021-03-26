@@ -1,6 +1,6 @@
 
 GET http://localhost:3000/api/posts/offset/10
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjcwNDQwNiwiaWF0IjoxNjE2Njg2NDA2fQ.jvzb1d6jDqIY7iFAnK4HJZGfPguf-nu4hj4PzQmKRW0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjc2NTg3MywiaWF0IjoxNjE2NzQ3ODczfQ.bcsnvU3lC20M_ZnKjQ9r6-n20hZaQj6JQdJOQzTgyI4
 
 ###
 GET http://localhost:3000/api/posts/keyword/cortinas
@@ -73,5 +73,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6
 }
 
 ###
-GET http://localhost:3000/api/postMessages/user/3
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjcxMTIzMiwiaWF0IjoxNjE2NjkzMjMyfQ.CUqwE1Z642QjtDZUJa9xzyqL5pvxDizKJSwx-yHL5aY
+GET http://localhost:3000/api/postMessages/user/8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjc2NTg3MywiaWF0IjoxNjE2NzQ3ODczfQ.bcsnvU3lC20M_ZnKjQ9r6-n20hZaQj6JQdJOQzTgyI4
+
+###
+GET http://localhost:3000/api/posts/keyword/cortina/offset/0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjc2NTg3MywiaWF0IjoxNjE2NzQ3ODczfQ.bcsnvU3lC20M_ZnKjQ9r6-n20hZaQj6JQdJOQzTgyI4
