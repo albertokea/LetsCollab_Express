@@ -170,12 +170,6 @@ router.delete('/delete/:idpost', async (req, res) => {
 })
 
 
-/* router.post('/download', async (req, res) => {
-    const myModule = appRoot + '/public/audio/';
-    console.log(myModule)
-    filepath = path.join(myModule + req.body.filename)
-    console.log(filepath)
-    res.sendFile(filepath)
-}) */
+
 
 module.exports = router;
