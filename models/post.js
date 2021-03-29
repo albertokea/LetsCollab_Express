@@ -5,8 +5,8 @@ const getAll = (offset) => {
                 return reject(err);
             }
             resolve(rows);
-        })
-    })
+        });
+    });
 }
 
 const getById = (id) => {
@@ -15,8 +15,8 @@ const getById = (id) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows[0]);
-        })
-    })
+        });
+    });
 }
 
 const getByGenre = (genre, offset) => {
@@ -25,8 +25,8 @@ const getByGenre = (genre, offset) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
-        })
-    })
+        });
+    });
 }
 
 const getByLicense = (license, offset) => {
@@ -35,8 +35,8 @@ const getByLicense = (license, offset) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
-        })
-    })
+        });
+    });
 }
 
 const getByKey = (key, offset) => {
@@ -45,8 +45,8 @@ const getByKey = (key, offset) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
-        })
-    })
+        });
+    });
 }
 
 const getByBpm = (bpm, offset) => {
@@ -55,8 +55,8 @@ const getByBpm = (bpm, offset) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
-        })
-    })
+        });
+    });
 }
 
 const getByType = (type, offset) => {
@@ -65,8 +65,8 @@ const getByType = (type, offset) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
-        })
-    })
+        });
+    });
 }
 
 const getByUserId = (fk_user, offset) => {
@@ -75,8 +75,8 @@ const getByUserId = (fk_user, offset) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
-        })
-    })
+        });
+    });
 }
 
 const getByKeyword = (keyword, offset) => {
@@ -85,8 +85,8 @@ const getByKeyword = (keyword, offset) => {
             if (err) return reject(err);
             if (rows.length === 0) return resolve(null);
             resolve(rows);
-        })
-    })
+        });
+    });
 }
 
 const getCount = () => {
@@ -96,8 +96,8 @@ const getCount = () => {
                 return reject(err);
             }
             resolve(rows[0].count);
-        })
-    })
+        });
+    });
 }
 
 const getCountUserPosts = (user) => {
@@ -107,8 +107,8 @@ const getCountUserPosts = (user) => {
                 return reject(err);
             }
             resolve(rows[0].count);
-        })
-    })
+        });
+    });
 }
 
 const getCountByGenre = (genre) => {
@@ -118,8 +118,8 @@ const getCountByGenre = (genre) => {
                 return reject(err);
             }
             resolve(rows[0].count);
-        })
-    })
+        });
+    });
 }
 
 const getCountByLicense = (license) => {
@@ -129,8 +129,8 @@ const getCountByLicense = (license) => {
                 return reject(err);
             }
             resolve(rows[0].count);
-        })
-    })
+        });
+    });
 }
 
 const getCountByKey = (key) => {
@@ -140,8 +140,8 @@ const getCountByKey = (key) => {
                 return reject(err);
             }
             resolve(rows[0].count);
-        })
-    })
+        });
+    });
 }
 
 const getCountByBpm = (bpm) => {
@@ -151,8 +151,8 @@ const getCountByBpm = (bpm) => {
                 return reject(err);
             }
             resolve(rows[0].count);
-        })
-    })
+        });
+    });
 }
 
 const getCountByType = (type) => {
@@ -162,8 +162,8 @@ const getCountByType = (type) => {
                 return reject(err);
             }
             resolve(rows[0].count);
-        })
-    })
+        });
+    });
 }
 
 const getCountByKeyword = (keyword) => {
@@ -173,8 +173,8 @@ const getCountByKeyword = (keyword) => {
                 return reject(err);
             }
             resolve(rows[0].count);
-        })
-    })
+        });
+    });
 }
 
 const create = ({ genre, license, audio, key, bpm, extra_tags, download, description, type, fk_user }) => {
@@ -195,7 +195,7 @@ const updateById = ({ genre, license, audio, key_note, bpm, extra_tags, download
             (err, result) => {
                 if (err) return reject(err);
                 resolve(result);
-            })
+            });
     });
 }
 

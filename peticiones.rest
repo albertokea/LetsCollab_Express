@@ -89,3 +89,11 @@ Content-Type: application/json
 {
    "filename": "60b621cfdc2cced88263a39a2d617d7f.mp3"
 }
+
+###
+GET http://localhost:3000/api/favourites/8/offset/0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzA0MDk5NiwiaWF0IjoxNjE3MDIyOTk2fQ.lY8yHGn1n9NgDoG8TYArhq2cuuM32ws3_sxPUbvdnAM
+
+###
+GET http://localhost:3000/api/favourites/count/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzA0MDk5NiwiaWF0IjoxNjE3MDIyOTk2fQ.lY8yHGn1n9NgDoG8TYArhq2cuuM32ws3_sxPUbvdnAM
