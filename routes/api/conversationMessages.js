@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const { getMessages } = require('../../models/conversationMessage')
 
-router.get('/:idconversation/user/:iduser', async (req, res) => {
+router.get('/:idconversation', async (req, res) => {
     try {
-        const result = await getMessages(req.params.idconversation, req.params.iduser);
+        const result = await getMessages(req.params.idconversation);
         res.json(result)
     }
     catch (error) {
