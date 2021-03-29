@@ -210,6 +210,8 @@ const deleteById = (id) => {
     });
 }
 
+
+
 module.exports = {
-    getAll, getCount, getCountUserPosts, getCountByGenre, getCountByLicense, getCountByKey, getCountByBpm, getCountByType, getCountByKeyword, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, getByKeyword, create, updateById, deleteById
+    getAll, getCount, getCountUserPosts, getCountByGenre, getCountByLicense, getCountByKey, getCountByBpm, getCountByType, getCountByKeyword, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, getByKeyword, create, updateById, deleteById,
 }

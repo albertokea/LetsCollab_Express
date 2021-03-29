@@ -1,8 +1,11 @@
 const router = require('express').Router();
 const multer = require('multer');
 const upload = multer({ dest: 'public/audio' });
-const { getAll, getCount, getCountUserPosts, getCountByGenre, getCountByLicense, getCountByKey, getCountByBpm, getCountByType, getCountByKeyword, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, getByKeyword, create, updateById, deleteById } = require('../../models/post');
+const { getAll, getCount, getCountUserPosts, getCountByGenre, getCountByLicense, getCountByKey, getCountByBpm, getCountByType, getCountByKeyword, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, getByKeyword, create, updateById, deleteById, } = require('../../models/post');
 const fs = require('fs');
+const path = require('path')
+const appRoot = require('app-root-path');
+
 
 router.get('/offset/:offset', async (req, res) => {
     try {
@@ -167,5 +170,12 @@ router.delete('/delete/:idpost', async (req, res) => {
 })
 
 
+/* router.post('/download', async (req, res) => {
+    const myModule = appRoot + '/public/audio/';
+    console.log(myModule)
+    filepath = path.join(myModule + req.body.filename)
+    console.log(filepath)
+    res.sendFile(filepath)
+}) */
 
 module.exports = router;

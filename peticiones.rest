@@ -79,3 +79,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6
 ###
 GET http://localhost:3000/api/posts/keyword/cortina/offset/0
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNjc2NTg3MywiaWF0IjoxNjE2NzQ3ODczfQ.bcsnvU3lC20M_ZnKjQ9r6-n20hZaQj6JQdJOQzTgyI4
+
+###
+
+POST http://localhost:3000/api/posts/download
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJleHBpcmUiOjE2MTY3NjcyMDksImlhdCI6MTYxNjc0OTIwOX0.ZQQcGHs6gvvJvwaBWUSuzDpYYgU4Gaq6uDy4O3I8mnA
+Content-Type: application/json
+
+{
+   "filename": "60b621cfdc2cced88263a39a2d617d7f.mp3"
+}
