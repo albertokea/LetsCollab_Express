@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { getByPost, getByUserId, create, deleteById } = require('../../models/postMessage');
+const { getLike, getByUser, create, deleteById } = require('../../models/like');
 
-router.get('/post/:post', async (req, res) => {
+router.get('/:idpost/user/:iduser', async (req, res) => {
     try {
-        const result = await getByPost(req.params.post);
+        const result = await getLike(req.params.idpost, req.params.iduser);
         res.json(result)
     }
     catch (error) {
@@ -11,9 +11,9 @@ router.get('/post/:post', async (req, res) => {
     }
 });
 
-router.get('/user/:userid', async (req, res) => {
+router.get('/user/:iduser', async (req, res) => {
     try {
-        const result = await getByUserId(req.params.userid);
+        const result = await getByUser(req.params.iduser);
         res.json(result)
     }
     catch (error) {
@@ -31,16 +31,15 @@ router.post('/new', async (req, res) => {
     }
 });
 
-router.delete('/delete/:idmessage', async (req, res) => {
+router.delete('/delete/:idlike', async (req, res) => {
     try {
-        const result = await deleteById(req.params.idmessage);
+        const result = await deleteById(req.params.idlike);
         res.json(result)
     }
     catch (error) {
         res.status(422).json({ error: error.message });
     }
 });
-
 
 
 module.exports = router;

@@ -95,5 +95,23 @@ GET http://localhost:3000/api/favourites/8/offset/0
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzA0MDk5NiwiaWF0IjoxNjE3MDIyOTk2fQ.lY8yHGn1n9NgDoG8TYArhq2cuuM32ws3_sxPUbvdnAM
 
 ###
-GET http://localhost:3000/api/favourites/count/4
+GET http://localhost:3000/api/conversationMessages/1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzA0MDk5NiwiaWF0IjoxNjE3MDIyOTk2fQ.lY8yHGn1n9NgDoG8TYArhq2cuuM32ws3_sxPUbvdnAM
+
+###
+GET http://localhost:3000/api/likes/1/user/8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzA2MDg3NSwiaWF0IjoxNjE3MDQyODc1fQ.Flt_vhlH3NneUiVYnSdRZ79_3MAl8Hp_XgbZaSNsCMo
+
+###
+POST http://localhost:3000/api/likes/new
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzA2MDg3NSwiaWF0IjoxNjE3MDQyODc1fQ.Flt_vhlH3NneUiVYnSdRZ79_3MAl8Hp_XgbZaSNsCMo
+Content-Type: application/json
+
+{
+    "fk_post":"1",
+    "fk_user":5
+}
+
+###
+DELETE http://localhost:3000/api/likes/delete/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzA2MDg3NSwiaWF0IjoxNjE3MDQyODc1fQ.Flt_vhlH3NneUiVYnSdRZ79_3MAl8Hp_XgbZaSNsCMo
