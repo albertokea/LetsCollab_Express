@@ -1,10 +1,21 @@
-const getAll = () => {
+const getAll = (offset) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM users', (err, rows) => {
+        db.query('SELECT * FROM users order by iduser desc limit 10 offset ?', [offset], (err, rows) => {
             if (err) {
                 return reject(err);
             }
             resolve(rows);
+        })
+    })
+}
+
+const getCountUsers = () => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count FROM users', (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
         })
     })
 }
@@ -72,6 +83,7 @@ const updateHeader = ({ header_picture, iduser }) => {
             })
     });
 }
+
 const deleteById = (id) => {
     return new Promise((resolve, reject) => {
         db.query('DELETE FROM users where iduser = ?', [id], (err, result) => {
@@ -86,5 +98,5 @@ const deleteById = (id) => {
 
 
 module.exports = {
-    getAll, getById, getByEmail, getByUser, create, updateProfile, deleteById, updateHeader
+    getAll, getCountUsers, getById, getByEmail, getByUser, create, updateProfile, deleteById, updateHeader
 }
