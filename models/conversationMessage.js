@@ -9,4 +9,13 @@ const getMessages = (idconversation) => {
     });
 }
 
-module.exports = { getMessages }
+const create = ({ fk_conversation, fk_user, text }) => {
+    return new Promise((resolve, reject) => {
+        db.query('insert into conversation_messages (fk_conversation, fk_user, text) values (?, ?, ?)', [fk_conversation, fk_user, text], (err, result) => {
+            if (err) return reject(err);
+            resolve(result);
+        });
+    });
+}
+
+module.exports = { getMessages, create }

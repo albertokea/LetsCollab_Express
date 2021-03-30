@@ -115,3 +115,24 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3000/api/likes/delete/2
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzA2MDg3NSwiaWF0IjoxNjE3MDQyODc1fQ.Flt_vhlH3NneUiVYnSdRZ79_3MAl8Hp_XgbZaSNsCMo
+
+###
+POST http://localhost:3000/api/conversations/new
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzEwNzI3MSwiaWF0IjoxNjE3MDg5MjcxfQ.0eeIanIBSc3_YmEQWhP3-amsM9xg4L1wUCpGtvKv7e8
+Content-Type: application/json
+
+{
+    "fk_user1":"1",
+    "fk_user2":"5"
+}
+
+###
+POST http://localhost:3000/api/conversationMessages/new
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzEwNzI3MSwiaWF0IjoxNjE3MDg5MjcxfQ.0eeIanIBSc3_YmEQWhP3-amsM9xg4L1wUCpGtvKv7e8
+Content-Type: application/json
+
+{
+    "fk_user1":"8",
+    "fk_conversation":"1",
+    "text": "Hola caracola, tu viejo que tal mea?"
+}
