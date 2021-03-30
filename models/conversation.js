@@ -26,9 +26,18 @@ const getByUsersIds = (id1, id2) => {
             if (err) {
                 return reject(err);
             }
-            resolve(rows);
+            resolve(rows[0]);
         });
     });
 }
 
-module.exports = { getByConversation, getByUserId, getByUsersIds }
+const create = ({ fk_user1, fk_user2 }) => {
+    return new Promise((resolve, reject) => {
+        db.query('insert into conversations (fk_user1, fk_user2) values (?, ?)', [fk_user1, fk_user2], (err, result) => {
+            if (err) return reject(err);
+            resolve(result);
+        });
+    });
+}
+
+module.exports = { getByConversation, getByUserId, getByUsersIds, create }
