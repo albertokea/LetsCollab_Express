@@ -18,4 +18,13 @@ const create = ({ fk_conversation, fk_user, text }) => {
     });
 }
 
-module.exports = { getMessages, create }
+const createFile = ({ fk_conversation, fk_user, text }) => {
+    return new Promise((resolve, reject) => {
+        db.query('insert into conversation_messages (fk_conversation, fk_user, text, file) values (?, ?, ?, ?)', [fk_conversation, fk_user, text, true], (err, result) => {
+            if (err) return reject(err);
+            resolve(result);
+        });
+    });
+}
+
+module.exports = { getMessages, create, createFile }

@@ -3,8 +3,6 @@ const multer = require('multer');
 const upload = multer({ dest: 'public/audio' });
 const { getAll, getCount, getCountUserPosts, getCountByGenre, getCountByLicense, getCountByKey, getCountByBpm, getCountByType, getCountByKeyword, getById, getByGenre, getByLicense, getByKey, getByBpm, getByType, getByUserId, getByKeyword, create, updateById, deleteById, } = require('../../models/post');
 const fs = require('fs');
-const path = require('path')
-const appRoot = require('app-root-path');
 
 
 router.get('/offset/:offset', async (req, res) => {
@@ -147,7 +145,7 @@ router.post('/new', upload.single('audio'), async (req, res) => {
     catch (error) {
         res.status(422).json({ error: error.message });
     }
-})
+});
 
 router.post('/update/', async (req, res) => {
     try {
@@ -157,7 +155,7 @@ router.post('/update/', async (req, res) => {
     catch (error) {
         res.status(422).json({ error: error.message });
     }
-})
+});
 
 router.delete('/delete/:idpost', async (req, res) => {
     try {
@@ -167,7 +165,7 @@ router.delete('/delete/:idpost', async (req, res) => {
     catch (error) {
         res.status(422).json({ error: error.message });
     }
-})
+});
 
 
 
