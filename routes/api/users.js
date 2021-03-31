@@ -2,7 +2,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const uploadProfileImage = multer({ dest: 'public/images/profile_pictures' });
 const uploadHeader = multer({ dest: 'public/images/header_pictures' });
-const { getAll, getCountUsers, getById, getByEmail, getByUser, updateProfile, deleteById, updateHeader } = require('../../models/user');
+const { getAll, getCountUsers, getById, getByEmail, getByUser, getCountByKeyword, updateProfile, deleteById, updateHeader, getByKeyword } = require('../../models/user');
 const fs = require('fs')
 
 //GET all users
@@ -58,6 +58,22 @@ router.get('/subtitle/:subtitle', async (req, res) => {
     try {
         const result = await getByUser(req.params.user);
         res.json(result)
+    }
+    catch (error) {
+        res.status(422).json({ error: error.message });
+    }
+});
+
+//GET by keyword
+router.get('/keyword/:keyword/offset/:offset', async (req, res) => {
+    try {
+        const data = {};
+        const result = await getByKeyword(req.params.keyword, parseInt(req.params.offset));
+        const count = await getCountByKeyword(req.params.keyword);
+        data.result = result;
+        data.info = { count, pages: Math.ceil(count / 10) }
+        console.log(data)
+        res.json(data);
     }
     catch (error) {
         res.status(422).json({ error: error.message });

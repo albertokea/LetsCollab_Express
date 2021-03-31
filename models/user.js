@@ -50,6 +50,29 @@ const getByUser = (username) => {
     })
 }
 
+const getByKeyword = (keyword, offset) => {
+    console.log(keyword);
+    console.log(offset)
+    return new Promise((resolve, reject) => {
+        db.query('select * from users where users.user like ? OR users.subtitle like ? OR users.bio like ? order by iduser desc limit 10 offset ?', [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, offset], (err, rows) => {
+            if (err) return reject(err);
+            if (rows.length === 0) return resolve(null);
+            resolve(rows);
+        });
+    });
+}
+
+const getCountByKeyword = (keyword) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT count(*) as count FROM users where users.user like ? OR users.subtitle like ? OR users.bio like ?', [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`], (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0].count);
+        });
+    });
+}
+
 const create = ({ name, surname, email, birth_date, gender, user, password }) => {
     return new Promise((resolve, reject) => {
         db.query('insert into users (name, surname, email, birth_date, gender, user, password, register_date) values (?, ?, ?, ?, ?, ?, ?, ?)', [name, surname, email, birth_date, gender, user, password, new Date()],
@@ -98,5 +121,5 @@ const deleteById = (id) => {
 
 
 module.exports = {
-    getAll, getCountUsers, getById, getByEmail, getByUser, create, updateProfile, deleteById, updateHeader
+    getAll, getCountUsers, getById, getByEmail, getByUser, getByKeyword, getCountByKeyword, create, updateProfile, deleteById, updateHeader
 }

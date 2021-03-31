@@ -136,3 +136,9 @@ Content-Type: application/json
     "fk_conversation":"1",
     "text": "Hola caracola, tu viejo que tal mea?"
 }
+
+###
+GET http://localhost:3000/api/users/keyword/albertokea2/offset/0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImV4cGlyZSI6MTYxNzIxNzU3MywiaWF0IjoxNjE3MTk5NTczfQ.EnZYt84_vt56j7WI7gpzKNMazAjdgecSrr12gEGefUQ
+
+mysql://b3724f479d6e3c:1ddd86ad@eu-cdbr-west-01.cleardb.com/heroku_05d7aa9270ede45?reconnect=true
